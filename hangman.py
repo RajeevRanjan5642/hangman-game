@@ -9,7 +9,6 @@ import string
 
 WORDLIST_FILENAME = "words.txt"
 
-
 def load_words():
     """
     Returns a list of valid words. Words are strings of lowercase letters.
@@ -17,7 +16,6 @@ def load_words():
     Depending on the size of the word list, this function may
     take a while to finish.
     """
-    #print("Loading word list from file...")
     # inFile: file
     #opening file in read mode and coppying the content into inFile
     inFile = open(WORDLIST_FILENAME, 'r')
@@ -26,10 +24,7 @@ def load_words():
     # wordlist: list of strings
     #converting string into list(of words in string)
     wordlist = line.split()
-    #print("  ", len(wordlist), "words loaded.")
     return wordlist
-
-
 
 def choose_word(wordlist):
     """
@@ -39,10 +34,12 @@ def choose_word(wordlist):
     """
     return random.choice(wordlist)
 
+#--------------------------------------------------------
 
 # Load the list of words into the variable wordlist
 # so that it can be accessed from anywhere in the program
 wordlist = load_words()
+
 
 def is_word_guessed(secret_word, letters_guessed):
     '''
@@ -92,9 +89,9 @@ def get_available_letters(letters_guessed):
 def is_input_valid(letters_guessed,user_input):
     '''
     letters_guessed: list (of letters), which letters have been guessed so far
-    user_input: string, the current character that user has guessed
-    returns: bool, if the user has entered either a symbol or a letter that has
-             already been guessed return False, True otherwise).
+    user_input: string(one letter or special symbol), the current user input
+    returns: boolean, if the user has entered either a special symbol or a letter that has
+             already been guessed return False; True otherwise.
     '''
     if not str.isalpha(user_input):
         print("Oops! That is not a valid letter.")
@@ -107,21 +104,22 @@ def is_input_valid(letters_guessed,user_input):
     
 def is_match(secret_word,user_input):
     '''
-    secret_word: string, the word the user is guessing
-    user_input: string, the current letter that user has guessed
-    returns: bool, if the letter that user has guessed matches with a letter present 
-             in secret word than return True, False otherwise.
+    secret_word: string(of letters), the word the user is guessing
+    user_input: string(one letter), the current letter that user has guessed
+    returns: boolean, if the letter that user has guessed matches with a letter present 
+             in secret word than return True; False otherwise.
     '''
     letters_in_secret_word = list(secret_word)
     if user_input in letters_in_secret_word:
         return True
     else:
         return False
-
+    
+#---------------------------------------------------------
     
 def hangman(secret_word):
     '''
-    secret_word: string, the secret word to guess.
+    secret_word: string(of letters), the secret word to guess.
     
     Starts up an interactive game of Hangman.
     
@@ -194,7 +192,7 @@ def hangman(secret_word):
     print("Sorry, you ran out of guesses. The word was",secret_word,".")
 
 
-# -----------------------------------
+# ---------------------------------------------------------
 
 
 
